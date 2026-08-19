@@ -1,5 +1,10 @@
+// requirements
+// fetch live/near-live data from jsonplaceholder API and display them
+// use /posts as main data source
+// apply ES6+ data handling skills and asynch data handling skills
+
 // i made this so that the API URL can be easily changed in one place if needed
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
+const API_URL = "https://jsonplaceholder.typicode.com/posts"; // /posts
 
 const loadPostsButton = document.getElementById("loadPosts");
 const searchInput = document.getElementById("searchInput");

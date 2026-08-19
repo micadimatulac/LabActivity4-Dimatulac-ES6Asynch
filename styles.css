@@ -153,11 +153,7 @@ button:active {
     gap: 20px;
 }
 
-/*
-    Each card keeps the same size.
-    This means 1 or 2 results will not stretch
-    across the entire row.
-*/
+/* CARDS */
 .post {
     background: #ffffff;
     border: 1px solid #e8e8e8;
