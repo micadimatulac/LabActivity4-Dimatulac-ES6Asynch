@@ -49,9 +49,12 @@ const fetchPosts = async () => { // async function to fetch posts from the API
 
 // get filtered posts based on search bar input
 const getFilteredPosts = () => {
+    // gets whatever user input/search no matter the casing
     const searchTerm = searchInput.value.toLowerCase().trim();
 
-    return posts.filter(({ title, body }) =>
+    // ES6 - filter checks posts and keeps the ones that match condition
+    return posts.filter(({ title, body }) => // destructuring; gets
+        // checks if search is in the text
         title.toLowerCase().includes(searchTerm) ||
         body.toLowerCase().includes(searchTerm)
     );
@@ -59,12 +62,12 @@ const getFilteredPosts = () => {
 
 // sorts posts based on drop down
 const sortPosts = (postList) => {
-    const sortedPosts = [...postList];
+    const sortedPosts = [...postList]; // spread operator creates copy of array (sortedPosts) para di ma modify ang orig array
     const sortType = sortSelect.value;
 
     switch (sortType) {
         case "titleAsc":
-            return sortedPosts.sort((a, b) =>
+            return sortedPosts.sort((a, b) => // compare title of posts
                 a.title.localeCompare(b.title)
             );
 
