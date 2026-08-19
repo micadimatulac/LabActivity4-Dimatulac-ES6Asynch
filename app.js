@@ -67,7 +67,7 @@ const sortPosts = (postList) => {
 
     switch (sortType) {
         case "titleAsc":
-            return sortedPosts.sort((a, b) => // compare title of posts
+            return sortedPosts.sort((a, b) => // compare titles of posts
                 a.title.localeCompare(b.title)
             );
 
@@ -78,12 +78,12 @@ const sortPosts = (postList) => {
 
         case "idAsc":
             return sortedPosts.sort((a, b) =>
-                a.id - b.id
+                a.id - b.id // if negative, a first
             );
 
         case "idDesc":
             return sortedPosts.sort((a, b) =>
-                b.id - a.id
+                b.id - a.id // if positive, b first
             );
 
         default:
@@ -104,17 +104,18 @@ const displayPosts = (postList) => {
     const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
     const endIndex = startIndex + POSTS_PER_PAGE;
 
+    // 
     const paginatedPosts = postList.slice(startIndex, endIndex);
 
     postsContainer.innerHTML = paginatedPosts
-        .map(({ id, title, body }) => `
+        .map(({ id, title, body }) => ` // ES6 - map used to make each post obj into html string to display them
             <article class="post">
                 <div class="post-id">Post #${id}</div>
                 <h2>${title}</h2>
                 <p>${body}</p>
             </article>
         `)
-        .join("");
+        .join(""); // join used to combine all the html strings into one string to display them
 };
 
 // Display pagination controls
@@ -135,7 +136,7 @@ const displayPagination = (postList) => {
 
     previousButton.addEventListener("click", () => {
         if (currentPage > 1) {
-            currentPage--;
+            currentPage--; // when back is clicked
             updatePosts();
 
             // Return to top when changing pages
@@ -180,7 +181,7 @@ const displayPagination = (postList) => {
 
     nextButton.addEventListener("click", () => {
         if (currentPage < totalPages) {
-            currentPage++;
+            currentPage++; // when next is clicked
             updatePosts();
 
             // Return to top when changing pages
@@ -195,6 +196,8 @@ const displayPagination = (postList) => {
 };
 
 // Update the displayed posts
+// MOST IMPORTANT FUNCTION - this is the one that calls the other functions to update the posts based on search and sort
+// posts, fetch and store posts, getfilteredposts(), filteredposts, sortposts(), sortedposts, displayposts(), displaypagination()
 const updatePosts = () => {
     const filteredPosts = getFilteredPosts();
     const sortedPosts = sortPosts(filteredPosts);
@@ -228,8 +231,11 @@ const changeSort = () => {
 };
 
 // Event listeners
+// when load posts button is clicked, fetchPosts() is called
 loadPostsButton.addEventListener("click", fetchPosts);
 
+// when user types in search bar, searchPosts() is called
 searchInput.addEventListener("input", searchPosts);
 
+// when user changes sort option, changeSort() is called
 sortSelect.addEventListener("change", changeSort);
