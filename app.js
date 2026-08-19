@@ -113,7 +113,8 @@ const displayPosts = (postList) => {
     const paginatedPosts = postList.slice(startIndex, endIndex);
 
     postsContainer.innerHTML = paginatedPosts
-        .map(({ id, title, body }) => ` // ES6 - map used to make each post obj into html string to display them
+        // ES6 - map used to make each post obj into html string to display them
+        .map(({ id, title, body }) => ` 
             <article class="post">
                 <div class="post-id">Post #${id}</div>
                 <h2>${title}</h2>
